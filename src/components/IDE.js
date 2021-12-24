@@ -31,7 +31,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export default function IDE({ docId, modal, toggleModal, cpp, setcpp, java, setjava, js, setjs, php, setphp, pascal, setpascal, perl, setperl, ruby, setruby, python, setpython, input, setInput, selected, setSelected, output, textEditor, setTextEditor, processing, percentageStage, isInputBoxShown, setOutput }) {
     const [socket, setSocket] = useState(null);
-    
+
     const [peer, setPeer] = useState(null);
     const userName = 'smit'
     const videoGrid = document.getElementById('video-grid');
@@ -68,6 +68,7 @@ export default function IDE({ docId, modal, toggleModal, cpp, setcpp, java, setj
     useEffect(() => {
         if (socket == null) return;
         socket.emit('get-document', docId);
+        // console.log("data from ide.js file", data)
         socket.once('load-document', (data) => {
             setcpp(data.cpp);
             setjava(data.java);
@@ -434,9 +435,9 @@ export default function IDE({ docId, modal, toggleModal, cpp, setcpp, java, setj
             const h = canvas.height;
             // console.log(w, h, window.width, window.height);
 
-            
+
             setPencilColor(current.color);
-           
+
             socket.emit('drawing', {
                 x0: x0 / w,
                 y0: y0 / h,

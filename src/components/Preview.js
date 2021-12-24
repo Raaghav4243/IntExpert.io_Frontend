@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Login, Logout } from './auth/Auth0';
 
 export default function Preview({ docId }) {
+    console.log("after this " + docId)
     const { isAuthenticated, user } = useAuth0();
     useEffect(() => {
         ReactGA.pageview('preview-screen');
@@ -21,7 +22,7 @@ export default function Preview({ docId }) {
     const joinRoomViaRoomId = () => {
         const roomId = document.getElementById("roomIdInput");
         const roomIdValue = roomId.value;
-
+        console.log(roomIdValue)
         if (roomIdValue.includes("http") || roomIdValue.includes("https")) {
             const url = new URL(roomIdValue);
             const path = url.pathname;
@@ -46,7 +47,7 @@ export default function Preview({ docId }) {
         <div className="bg-orange-standard select-none flex items-center justify-center h-full w-full">
             <div className="mb-20 flex flex-col items-center">
                 <div className="flex w-full text-white text-3xl sm:text-7xl font-bold codeFont justify-center">
-                    <span>&#60;CodeConnect &#47;&#62;</span>
+                    <span>&#60;IntExpert.io &#47;&#62;</span>
                 </div>
                 <div className="flex flex-col mt-20 justify-center  text-white">
                     <button onClick={() => {

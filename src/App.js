@@ -123,8 +123,12 @@ function App() {
       redirect: 'follow'
     };
     fetch(backend_url, requestOptions)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("post req of question")
+        console.log(res)
+        res.json()})
       .then((data) => {
+        console.log(data);
         status = data.status_update_url;
         const url = backend_url + "?url=" + status;
 
@@ -177,6 +181,7 @@ function App() {
     axios.get(link).then((res) => {
       setPercentageStage(100)
       setProcessing(false);
+      console.log("res data:" , res.data)
       setOutput(res.data);
     }).catch((err) => {
       console.log(err);
@@ -240,7 +245,7 @@ function Header({ runCode, toggleModal, isAuthenticated, isInputBoxShown, setisI
       <div className="flex items-center">
         <div className="h-7 flex items-center font-medium text-xl codeFont text-orange-standard">
           <img className="h-full" src={'./logo.png'} alt="codeconnect logo" />
-          <span className="ml-2">CodeConnect</span>
+          <span className="ml-2">IntExpert.io</span>
         </div>
       </div>
       <div className="flex items-center">
